@@ -13,5 +13,6 @@
 		<property name="current_session_context_class">thread</property>
 
 		<mapping class="com.joole.domain.User" />
+		<mapping class="com.joole.domain.Product" />
 	</session-factory>
 </hibernate-configuration>
