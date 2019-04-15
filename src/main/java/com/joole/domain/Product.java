@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Products")
 public class Product {
-	
+	// kkk
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
