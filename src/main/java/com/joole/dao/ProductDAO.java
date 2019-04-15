@@ -17,7 +17,7 @@ public interface ProductDAO {
 	
 	//advanced product search
 	public List<Product> getProductsByAdvancedSearch();
-	
+	//test test shuangjin	
 	
 	
 	
