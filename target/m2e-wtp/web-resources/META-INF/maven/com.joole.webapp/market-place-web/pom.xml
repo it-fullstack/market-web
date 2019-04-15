@@ -63,6 +63,8 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		
 
 		<!-- Servlet API -->
 		<dependency>

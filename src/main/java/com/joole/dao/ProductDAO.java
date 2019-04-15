@@ -7,7 +7,9 @@ import com.joole.domain.Product;
 public interface ProductDAO {
 	
 	// product list view
-	public List<Product> getProductBySubcategory();
+	public List<Product> getAllProducts();
+	
+	public List<Product> getProductsBySubcategory(int sub_id);
 	
 	// basic product page view
 	public Product getProduct();
@@ -17,7 +19,8 @@ public interface ProductDAO {
 	
 	//advanced product search
 	public List<Product> getProductsByAdvancedSearch();
-	//test test shuangjin 2	
+	
+	
 	
 	
 	
