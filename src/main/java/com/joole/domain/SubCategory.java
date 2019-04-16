@@ -18,7 +18,7 @@ public class SubCategory {
 	@Column
 	private String categoryName;
   
-  @Column
+	@Column
 	private String subCategoryName;
 	
 	@Column
@@ -65,7 +65,7 @@ public class SubCategory {
 	@Override
 	public String toString() {
 		return "SubCategoty [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", subCategoryName="
-				+ SubCategoryName + ", parameters=" + parameters + "]";
+				+ subCategoryName + ", parameters=" + parameters + "]";
 	}
 	
 	

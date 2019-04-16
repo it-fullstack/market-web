@@ -52,11 +52,11 @@ public class ProductController {
 		}
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 
-   
+	}
 	
 	@RequestMapping(value = "/products/{subCategory}", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> listProductsBySubcategory(@PathVariable("subCategory") String subCategory) {
-		List<Product> products = productService.getProductsBySubcategory(subCategory);
+		List<Product> products = productService.getProductBySubcategory(subCategory);
 		if(products.isEmpty()){
 			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
 		}
@@ -81,4 +81,4 @@ public class ProductController {
 
 	}
 
-}
+
