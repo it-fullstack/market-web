@@ -9,7 +9,7 @@ public interface ProductDAO {
 	// product list view
 	public List<Product> getAllProducts();
 	
-	public List<Product> getProductsBySubcategory(int sub_id);
+	public List<Product> getProductsBySubcategory(String subCategory);
 	
 	// basic product page view
 	public Product getProduct();

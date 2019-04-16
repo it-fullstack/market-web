@@ -32,17 +32,19 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getProductsBySubcategory(int sub_id) {
+	public List<Product> getProductsBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
+
+
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-
-		String hql = "from Product where subCategoryId = :sub_id";
-		Query query = session.createQuery(hql);
-		query.setDouble("sub_id", sub_id);
-		List<Product> results = query.list();
+		String hql = "from Product where subCategoryId = 1";
+//		String hql = "from Product where subCategory.subCategoryName = " + subCategory;
+		List<Product> products = session.createQuery(hql).list();
 		tx.commit();
-		return results;
+		return products;
+
 	}
 
 	@Override

@@ -22,6 +22,7 @@ public class ProductController {
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> listAllProducts() {
 		System.out.println("in products");
+
 		List<Product> products = productService.getAllProducts();
 		if (products.isEmpty()) {
 			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);// You many decide to return
@@ -30,16 +31,16 @@ public class ProductController {
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/products/{sub_id}", method = RequestMethod.GET)
-	public ResponseEntity<List<Product>> getProductsBySubcategory(@PathVariable("sub_id") int sub_id) {
-		System.out.println("in subcategory");
-		List<Product> products = productService.getProductBySubcategory(sub_id);
-		if (products.isEmpty()) {
-			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);// You many decide to return
-																			// HttpStatus.NOT_FOUND
-		}
-		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-	}
+// 	@RequestMapping(value = "/products/{sub_id}", method = RequestMethod.GET)
+// 	public ResponseEntity<List<Product>> getProductsBySubcategory(@PathVariable("sub_id") int sub_id) {
+// 		System.out.println("in subcategory");
+// 		List<Product> products = productService.getProductBySubcategory(sub_id);
+// 		if (products.isEmpty()) {
+// 			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);// You many decide to return
+// 																			// HttpStatus.NOT_FOUND
+// 		}
+// 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+// 	}
 
 	// filter products
 	@RequestMapping(value = "/filter", method = RequestMethod.GET)
@@ -50,6 +51,33 @@ public class ProductController {
 																			// HttpStatus.NOT_FOUND
 		}
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+
+   
+	
+	@RequestMapping(value = "/products/{subCategory}", method = RequestMethod.GET)
+	public ResponseEntity<List<Product>> listProductsBySubcategory(@PathVariable("subCategory") String subCategory) {
+		List<Product> products = productService.getProductsBySubcategory(subCategory);
+		if(products.isEmpty()){
+			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+		}
+		for(Product product : products) {
+			System.out.println(product);
+		}
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+	
+	
+	
+//	@RequestMapping(value = "/products/")
+//	public ModelAndView listAllProducts(ModelAndView mv) {
+//		System.out.println("haha");
+//		List<Product> products = productService.getAllProducts();
+//		for(Product product : products) {
+//			System.out.println(product);
+//		}
+//		return mv;
+//	}
+
 
 	}
 

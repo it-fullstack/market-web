@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+
 @Table(name="SubCategories")
 public class SubCategory {
 	
@@ -16,14 +17,17 @@ public class SubCategory {
 	private int subCategoryId;
 	@Column
 	private String categoryName;
-	@Column
-	private String SubCategoryName;
+  
+  @Column
+	private String subCategoryName;
+	
 	@Column
 	private String parameters;
 	
 	public SubCategory() {
 		
 	}
+
 
 	public int getSubCategoryId() {
 		return subCategoryId;
@@ -42,12 +46,13 @@ public class SubCategory {
 	}
 
 	public String getSubCategoryName() {
-		return SubCategoryName;
+    	return subCategoryName;
 	}
 
 	public void setSubCategoryName(String subCategoryName) {
-		SubCategoryName = subCategoryName;
+		this.subCategoryName = subCategoryName;
 	}
+
 
 	public String getParameters() {
 		return parameters;
@@ -59,7 +64,7 @@ public class SubCategory {
 
 	@Override
 	public String toString() {
-		return "SubCategoty [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", SubCategoryName="
+		return "SubCategoty [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", subCategoryName="
 				+ SubCategoryName + ", parameters=" + parameters + "]";
 	}
 	
