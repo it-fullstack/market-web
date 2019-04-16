@@ -7,7 +7,7 @@ import com.joole.domain.Product;
 public interface ProductServiceDAO {
 	
 	// product list view
-		public List<Product> getProductBySubcategory(int sub_id);
+		public List<Product> getProductBySubcategory(String subCategory);
 		
 		public List<Product> getAllProducts();
 		
