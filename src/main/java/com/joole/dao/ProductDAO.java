@@ -12,10 +12,10 @@ public interface ProductDAO {
 	public List<Product> getProductsBySubcategory(String subCategory);
 	
 	// basic product page view
-	public Product getProduct();
+	public List<Product> getProduct(int pid);
 	
 	// product comparison
-	public List<Product> getProductsByComparison();
+	public List<Product> getProductsByComparison(List<Integer> productList);
 	
 	//advanced product search
 	public List<Product> getProductsByAdvancedSearch();

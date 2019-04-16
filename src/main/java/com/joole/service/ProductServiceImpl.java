@@ -31,9 +31,11 @@ public class ProductServiceImpl implements ProductServiceDAO {
 	private SubCategoryDAO subCategoryDAO;
 
 	@Override
-	public Product getProduct() {
+	@Transactional
+	public List<Product> getProduct(int pid) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productDAO.getProduct(pid);
+		return products;
 	}
 
 	@Override
@@ -46,9 +48,10 @@ public class ProductServiceImpl implements ProductServiceDAO {
 	}
 
 	@Override
-	public List<Product> getProductsByComparison() {
+	public List<Product> getProductsByComparison(List<Integer> productList) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productDAO.getProductsByComparison(productList);
+		return products;
 	}
 
 	@Override
@@ -59,7 +62,7 @@ public class ProductServiceImpl implements ProductServiceDAO {
 
 	@Override
 	@Transactional
-	public List<Product> getProductBySubcategory(String subCategory) {
+	public List<Product> getProductsBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
 		List<Product> products = productDAO.getProductsBySubcategory(subCategory);
 
