@@ -46,9 +46,10 @@ public class ProductServiceImpl implements ProductServiceDAO{
 	}
 
 	@Override
-	public List<Product> getProductBySubcategory(int sub_id) {
+	public List<Product> getProductBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productDAO.getProductsBySubcategory(subCategory);
+		return products;
 	}
 
 	

@@ -28,11 +28,19 @@ public class ProductDAOImpl implements ProductDAO {
 		tx.commit();
 		return products;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getProductsBySubcategory(int sub_id) {
+	public List<Product> getProductsBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "from Product where subCategoryId = 1";
+//		String hql = "from Product where subCategory.subCategoryName = " + subCategory;
+		List<Product> products = session.createQuery(hql).list();
+		tx.commit();
+		return products;
 	}
 
 	@Override
