@@ -19,5 +19,7 @@ public interface ProductServiceDAO {
 		
 		//advanced product search
 		public List<Product> getProductsByAdvancedSearch();
+		
+		public List<Product> filterProducts();
 
 }

@@ -8,22 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SubCategoies")
 
+@Table(name="SubCategories")
 public class SubCategory {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int subCategoryId;
-	
 	@Column
 	private String categoryName;
+  
+  @Column
+	private String subCategoryName;
 	
 	@Column
-	private String subCategoryName;
-
+	private String parameters;
+	
 	public SubCategory() {
 		
 	}
+
+
 	public int getSubCategoryId() {
 		return subCategoryId;
 	}
@@ -41,17 +46,28 @@ public class SubCategory {
 	}
 
 	public String getSubCategoryName() {
-		return subCategoryName;
+    	return subCategoryName;
 	}
 
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
 	}
+
+
+	public String getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
+	}
+
 	@Override
 	public String toString() {
-		return "SubCategory [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", subCategoryName="
-				+ subCategoryName + "]";
+		return "SubCategoty [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", subCategoryName="
+				+ SubCategoryName + ", parameters=" + parameters + "]";
 	}
 	
 	
+
 }
