@@ -2,6 +2,7 @@ package com.joole.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,19 +21,28 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
-		
+
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		List<Product> products = session.createQuery("from Product").list();
 		tx.commit();
 		return products;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getProductsBySubcategory(int sub_id) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "from Product where subCategoryId = :sub_id";
+		Query query = session.createQuery(hql);
+		query.setDouble("sub_id", sub_id);
+		List<Product> results = query.list();
+		tx.commit();
+		return results;
 	}
 
 	@Override
