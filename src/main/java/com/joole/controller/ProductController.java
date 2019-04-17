@@ -56,7 +56,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/products/{subCategory}", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> listProductsBySubcategory(@PathVariable("subCategory") String subCategory) {
-		List<Product> products = productService.getProductBySubcategory(subCategory);
+		List<Product> products = productService.getProductsBySubcategory(subCategory);
 		if(products.isEmpty()){
 			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
 		}
@@ -66,19 +66,27 @@ public class ProductController {
 		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
 	
-	
-	
-//	@RequestMapping(value = "/products/")
-//	public ModelAndView listAllProducts(ModelAndView mv) {
-//		System.out.println("haha");
-//		List<Product> products = productService.getAllProducts();
-//		for(Product product : products) {
-//			System.out.println(product);
-//		}
-//		return mv;
-//	}
-
-
+	@RequestMapping(value = "/products/pid={productId}", method = RequestMethod.GET)
+	public ResponseEntity<List<Product>> listProductDetails(@PathVariable("productId") int pid) {
+		List<Product> products = productService.getProduct(pid);
+		if(products.isEmpty()){
+			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+		}
+		System.out.println(products);
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/comparison/pl={productList}", method = RequestMethod.GET)
+	public ResponseEntity<List<Product>> listProductInComparison(@PathVariable("productList") List<Integer> productList) {
+		List<Product> products = productService.getProductsByComparison(productList);
+		if(products.isEmpty()){
+			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+		}
+		System.out.println(products);
+		return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+	}
+
+
+}
 
 
