@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -35,6 +36,27 @@ public class UserController {
         }
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUserbyName(@RequestParam(value="userName")String userName, @RequestParam(value="password")String password) {
+        System.out.println("Fetching User with name " + userName);
+        User user = userService.getUserbyName(userName);
+
+        if (user == null) {
+            System.out.println("User with name " + userName + " not found");
+            user = userService.getUserbyEmail(userName);//check userEmail 
+            if(user == null){
+            	System.out.println("no userName or userEmail!");
+            	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            }
+        }
+        if(password.equals(user.getPassword())){
+        	return new ResponseEntity<User>(user, HttpStatus.OK);
+        }
+        System.out.println("password error!");
+        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+    }
+	
 	
 
 

@@ -22,6 +22,24 @@ public class UserServiceImpl implements UserService{
 		User user = userDAO.getUser(id);
 		return user;
 	}
+
+	@Override
+	@Transactional
+	public User getUserbyName(String userName) {
+		// TODO Auto-generated method stub
+		User user = userDAO.getUserbyName(userName);
+		return user;
+	}
+
+	@Override
+	@Transactional
+	public User getUserbyEmail(String userEmail) {
+		// TODO Auto-generated method stub
+		User user = userDAO.getUserbyEmail(userEmail);
+		return user;
+	}
+	
+	
 	
 	
 
