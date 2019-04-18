@@ -1,13 +1,14 @@
 package com.joole.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.joole.domain.Product;
 
-public interface ProductServiceDAO {
+public interface ProductService {
 	
 	// product list view
-		public List<Product> getProductsBySubcategory(String subCategory);
+		public Map<String, List<Object>> getProductsBySubcategory(String subCategory);
 		
 		public List<Product> getAllProducts();
 		
@@ -20,6 +21,6 @@ public interface ProductServiceDAO {
 		//advanced product search
 		public List<Product> getProductsByAdvancedSearch();
 		
-		public List<Product> filterProducts();
+		public List<Product> filterProducts(Map<String, Object[]> map);
 
 }

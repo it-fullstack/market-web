@@ -28,6 +28,7 @@ public class Product {
 	private Date verifiedDate;
 	@Column
 	private byte[] productImage;
+	
 	@Column
 	private int subCategoryId;
 	

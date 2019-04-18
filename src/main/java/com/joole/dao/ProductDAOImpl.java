@@ -35,8 +35,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getProductsBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
 
-
-		
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		String hql = "from Product p where p.subCategory.subCategoryName = :sc ";
@@ -45,7 +43,6 @@ public class ProductDAOImpl implements ProductDAO {
 		List<Product> products = query.list();
 		tx.commit();
 		return products;
-
 	}
 
 	@Override
@@ -60,7 +57,7 @@ public class ProductDAOImpl implements ProductDAO {
 		List<Product> products = query.list();
 		tx.commit();
 		return products;
-		
+
 	}
 
 	@Override
