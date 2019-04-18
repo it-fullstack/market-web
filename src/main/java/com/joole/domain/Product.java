@@ -8,13 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="Products")
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
@@ -26,6 +28,7 @@ public class Product {
 	private Date verifiedDate;
 	@Column
 	private byte[] productImage;
+	
 	@Column
 	private int subCategoryId;
 	
@@ -36,6 +39,17 @@ public class Product {
 	@Column
 	private String productContact;
 	
+	@ManyToOne
+	@JoinColumn(name="subCategoryId", insertable=false, updatable=false)
+	private SubCategory subCategory;
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+	public void setSubCategory(SubCategory subCategory) {
+		this.subCategory = subCategory;
+	}
+
+
 	public Product() {
 		
 	}

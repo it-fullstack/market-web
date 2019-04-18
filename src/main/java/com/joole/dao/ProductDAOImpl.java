@@ -2,6 +2,7 @@ package com.joole.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,31 +21,57 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
-		
+
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		
+
 		List<Product> products = session.createQuery("from Product").list();
 		tx.commit();
 		return products;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getProductsBySubcategory(int sub_id) {
+	public List<Product> getProductsBySubcategory(String subCategory) {
 		// TODO Auto-generated method stub
-		return null;
+
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "from Product p where p.subCategory.subCategoryName = :sc ";
+		Query query = session.createQuery(hql);
+		query.setParameter("sc", subCategory);
+		List<Product> products = query.list();
+		tx.commit();
+		return products;
 	}
 
 	@Override
-	public Product getProduct() {
+	@SuppressWarnings("unchecked")
+	public List<Product> getProduct(int pid) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "from Product where productId = :pid";
+		Query query = session.createQuery(hql);
+		query.setParameter("pid", pid);
+		List<Product> products = query.list();
+		tx.commit();
+		return products;
+
 	}
 
 	@Override
-	public List<Product> getProductsByComparison() {
+	@SuppressWarnings("unchecked")
+	public List<Product> getProductsByComparison(List<Integer> productList) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "from Product where productId in :pl";
+		Query query = session.createQuery(hql);
+		query.setParameterList("pl", productList);
+		List<Product> products = query.list();
+		tx.commit();
+		return products;
 	}
 
 	@Override
