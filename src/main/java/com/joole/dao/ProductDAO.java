@@ -7,16 +7,20 @@ import com.joole.domain.Product;
 public interface ProductDAO {
 	
 	// product list view
-	public List<Product> getProductBySubcategory();
+	public List<Product> getAllProducts();
+	
+	public List<Product> getProductsBySubcategory(String subCategory);
 	
 	// basic product page view
-	public Product getProduct();
+	public List<Product> getProduct(int pid);
 	
 	// product comparison
-	public List<Product> getProductsByComparison();
+	public List<Product> getProductsByComparison(List<Integer> productList);
 	
 	//advanced product search
 	public List<Product> getProductsByAdvancedSearch();
+	
+	
 	
 	
 	

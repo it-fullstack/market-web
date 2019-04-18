@@ -4,6 +4,7 @@ package com.joole.controller;
 
 
 
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.joole.domain.User;
 import com.joole.service.UserService;
 
@@ -27,6 +27,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
 	
 	// get user by id
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,6 +41,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserbyName(@RequestParam(value="userName")String userName, @RequestParam(value="password")String password) {
         System.out.println("Fetching User with name " + userName);
@@ -82,6 +84,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
         //return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
+
 
 
 }
