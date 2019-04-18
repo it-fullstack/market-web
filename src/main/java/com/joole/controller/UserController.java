@@ -4,12 +4,15 @@ package com.joole.controller;
 
 
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +40,7 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserbyName(@RequestParam(value="userName")String userName, @RequestParam(value="password")String password) {
         System.out.println("Fetching User with name " + userName);
         User user = userService.getUserbyName(userName);
@@ -57,7 +60,28 @@ public class UserController {
         return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 	
-	
+	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> Register(@RequestParam(value="userName") String userName, @RequestParam(value="userEmail")String userEmail, @RequestParam(value="password")String password) {
+        System.out.println("Fetching User with name" + userName);
+        User userinDB = userService.getUserbyName(userName);
+        if (userinDB != null) {
+            System.out.println("User with name " + userName + " exists");
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        userinDB = userService.getUserbyEmail(userEmail);
+        if (userinDB != null) {
+            System.out.println("User with email " + userName + " exists");
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        if(userService.is_eamil_legal(userEmail) == false){
+        	System.out.println("userEmail format error!");
+        	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        User user = userService.addUser(userName, userEmail, password);
+        System.out.println("register user!" );
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+        //return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+    }
 
 
 }

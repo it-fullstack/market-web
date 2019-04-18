@@ -60,6 +60,15 @@ public class UserDAOImpl implements UserDAO {
 		return (User) listusers.get(0);
 	}
 
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+	     session.save(user);
+			tx.commit();
+	}
+
 	
 
 }
