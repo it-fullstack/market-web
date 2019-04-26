@@ -28,6 +28,7 @@ public class Product {
 	private Date verifiedDate;
 	@Column
 	private byte[] productImage;
+	
 	@Column
 	private int subCategoryId;
 	
@@ -38,15 +39,15 @@ public class Product {
 	@Column
 	private String productContact;
 	
-//	@ManyToOne
-//	@JoinColumn(name="subCategoryId")
-//	private SubCategory subCategory;
-//	public SubCategory getSubCategory() {
-//		return subCategory;
-//	}
-//	public void setSubCategory(SubCategory subCategory) {
-//		this.subCategory = subCategory;
-//	}
+	@ManyToOne
+	@JoinColumn(name="subCategoryId", insertable=false, updatable=false)
+	private SubCategory subCategory;
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+	public void setSubCategory(SubCategory subCategory) {
+		this.subCategory = subCategory;
+	}
 
 
 	public Product() {

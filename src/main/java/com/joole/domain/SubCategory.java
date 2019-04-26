@@ -5,29 +5,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 
-@Table(name="SubCategories")
+@Table(name = "SubCategories")
 public class SubCategory {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int subCategoryId;
 	@Column
 	private String categoryName;
-  
+
 	@Column
 	private String subCategoryName;
-	
+
 	@Column
 	private String parameters;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "categoryId", insertable = false, updatable = false)
+	private Category category;
+
 	public SubCategory() {
-		
+
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public int getSubCategoryId() {
 		return subCategoryId;
@@ -46,13 +59,12 @@ public class SubCategory {
 	}
 
 	public String getSubCategoryName() {
-    	return subCategoryName;
+		return subCategoryName;
 	}
 
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
 	}
-
 
 	public String getParameters() {
 		return parameters;
@@ -67,7 +79,5 @@ public class SubCategory {
 		return "SubCategoty [subCategoryId=" + subCategoryId + ", categoryName=" + categoryName + ", subCategoryName="
 				+ subCategoryName + ", parameters=" + parameters + "]";
 	}
-	
-	
 
 }
