@@ -3,6 +3,8 @@ package com.joole.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,6 @@ public class ProductController {
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> listAllProducts() {
 		System.out.println("in products");
-
 		List<Product> products = productService.getAllProducts();
 		if (products.isEmpty()) {
 			return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);
