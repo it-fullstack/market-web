@@ -45,18 +45,15 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<filter>
-	  <filter-name>cors</filter-name>
-<<<<<<< HEAD
-	  <filter-class>com.joole.helper.CORSFilter</filter-class>
-=======
-	  <filter-class>com.joole.filter.CORSFilter</filter-class>
->>>>>>> 79c362ed46be97c2a43c1e8fb045c3903ecf8514
+		<filter-name>cors</filter-name>
+		<filter-class>com.joole.helper.CORSFilter</filter-class>
+
 	</filter>
-	  
+
 	<filter-mapping>
-	  <filter-name>cors</filter-name>
-	  <url-pattern>/*</url-pattern>
+		<filter-name>cors</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 </web-app>
