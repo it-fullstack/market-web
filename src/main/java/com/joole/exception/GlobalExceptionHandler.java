@@ -17,5 +17,14 @@ public class GlobalExceptionHandler {
         error.setMessage(ex.getMessage());
         return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
     }
+	
+	
+	@ExceptionHandler(ProductException.class)
+    public ResponseEntity<ErrorResponse> productExceptionHandler(Exception ex) {
+        ErrorResponse error = new ErrorResponse();
+        error.setErrorCode(404);
+        error.setMessage(ex.getMessage());
+        return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
+    }
 
 }
